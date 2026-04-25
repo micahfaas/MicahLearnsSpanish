@@ -1,0 +1,49 @@
+[
+  {
+    "type": "vocab",
+    "spanish": "prueba",
+    "english": "test",
+    "pronunciation": "PROO-eh-bah",
+    "note": "Used to verify the pipeline is working",
+    "categories": ["other"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "manzana",
+    "english": "apple",
+    "pronunciation": "mahn-SAH-nah",
+    "note": "",
+    "categories": ["food"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "agua",
+    "english": "water",
+    "pronunciation": "AH-gwah",
+    "note": "Technically feminine but uses 'el' to avoid the awkward 'la agua' sound",
+    "categories": ["drinks"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "café",
+    "english": "coffee",
+    "pronunciation": "kah-FEH",
+    "note": "Also means 'café' the place",
+    "categories": ["drinks", "food"]
+  },
+  {
+    "type": "verb",
+    "infinitive": "hablar",
+    "meaning": "to speak / to talk",
+    "tense": "present",
+    "note": "Regular -AR verb. The pattern here applies to ALL regular -AR verbs.",
+    "categories": ["verbs", "small_talk"],
+    "forms": {
+      "yo": "hablo",
+      "tu": "hablas",
+      "el": "habla",
+      "nos": "hablamos",
+      "ellos": "hablan"
+    }
+  }
+]
