@@ -1,0 +1,27 @@
+[
+  {"type":"vocab","spanish":"Por favor","english":"Please","pronunciation":"por fah-VOR","category":"courtesy","note":""},
+  {"type":"vocab","spanish":"Gracias","english":"Thank you","pronunciation":"GRAH-syahs","category":"courtesy","note":""},
+  {"type":"vocab","spanish":"De nada","english":"You're welcome","pronunciation":"deh NAH-dah","category":"courtesy","note":"Literally 'of nothing'"},
+  {"type":"vocab","spanish":"Perdón","english":"Sorry / Excuse me","pronunciation":"per-DOHN","category":"courtesy","note":"Apologetic — when you've bumped someone or made a mistake"},
+  {"type":"vocab","spanish":"Disculpe","english":"Excuse me","pronunciation":"dees-KOOL-peh","category":"courtesy","note":"Formal — for getting someone's attention"},
+  {"type":"vocab","spanish":"Sí","english":"Yes","pronunciation":"see","category":"courtesy","note":""},
+  {"type":"vocab","spanish":"No","english":"No","pronunciation":"noh","category":"courtesy","note":""},
+  {"type":"vocab","spanish":"¿De dónde eres?","english":"Where are you from?","pronunciation":"deh DOHN-deh EH-rehs","category":"origins","note":"Informal"},
+  {"type":"vocab","spanish":"¿De dónde es?","english":"Where are you from?","pronunciation":"deh DOHN-deh ehs","category":"origins","note":"Formal"},
+  {"type":"vocab","spanish":"Soy de...","english":"I am from...","pronunciation":"soy deh","category":"origins","note":""},
+  {"type":"vocab","spanish":"Estados Unidos","english":"United States","pronunciation":"ehs-TAH-dohs oo-NEE-dohs","category":"origins","note":""},
+  {
+    "type":"verb",
+    "infinitive":"ser",
+    "meaning":"to be (permanent)",
+    "tense":"present",
+    "note":"Used for identity, origin, nationality, profession — defining traits",
+    "forms": {
+      "yo": "soy",
+      "tu": "eres",
+      "el": "es",
+      "nos": "somos",
+      "ellos": "son"
+    }
+  }
+]

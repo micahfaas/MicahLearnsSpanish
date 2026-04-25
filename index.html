@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micah Learns Spanish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4ecdc;
+  --paper-dark: #e8dcc4;
+  --ink: #2a2218;
+  --ink-soft: #5a4a36;
+  --accent: #c8472b;
+  --accent-soft: #e8a48a;
+  --gold: #b8893a;
+  --teal: #3d6660;
+  --shadow: rgba(60, 40, 20, 0.15);
+  --shadow-deep: rgba(60, 40, 20, 0.3);
+  --new: #b8893a;
+  --learning: #c8472b;
+  --mastered: #3d6660;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184, 137, 58, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(200, 71, 43, 0.05) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.09 0 0 0 0.08 0' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+body { padding: 32px 24px 60px; max-width: 960px; margin: 0 auto; }
+
+/* HEADER */
+header { margin-bottom: 32px; text-align: center; position: relative; }
+
+.github-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  background: rgba(255,255,255,0.3);
+}
+
+.github-link:hover {
+  color: var(--ink);
+  background: rgba(255,255,255,0.6);
+  border-color: var(--ink);
+}
+
+.github-link svg { width: 14px; height: 14px; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.tagline-translation {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* STATS BAR */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 24px 0 32px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(60, 40, 20, 0.15);
+  border-bottom: 1px solid rgba(60, 40, 20, 0.15);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.stat-value.new { color: var(--new); }
+.stat-value.learning { color: var(--learning); }
+.stat-value.mastered { color: var(--mastered); }
+
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* SYNC INDICATOR */
+.sync-bar {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.sync-bar .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mastered);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.sync-bar .dot.syncing {
+  background: var(--gold);
+  animation: pulse 1.2s ease infinite;
+}
+
+.sync-bar .dot.error { background: var(--accent); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-group {
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(60, 40, 20, 0.15);
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn:hover { color: var(--ink); }
+
+.btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.btn-primary:hover { background: #a8371d; transform: translateY(-1px); }
+
+.btn-ghost {
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  background: transparent;
+  font-size: 12px;
+  padding: 8px 14px;
+}
+
+.btn-ghost:hover { background: rgba(60, 40, 20, 0.05); }
+
+/* CARD */
+.card-stage {
+  perspective: 1500px;
+  margin: 32px auto;
+  max-width: 600px;
+  min-height: 420px;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  min-height: 420px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card.flipped { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  min-height: 420px;
+  padding: 40px 36px;
+  border-radius: 4px;
+  backface-visibility: hidden;
+  background: linear-gradient(135deg, #fdf6e7 0%, #f4ecdc 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 20px 40px var(--shadow),
+    0 4px 12px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(60, 40, 20, 0.1);
+}
+
+.card-face::before {
+  content: '';
+  position: absolute;
+  top: 16px; left: 16px; right: 16px; bottom: 16px;
+  border: 1px solid rgba(184, 137, 58, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.card-back { transform: rotateY(180deg); }
+
+.card-corner {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  position: absolute;
+  top: 32px;
+}
+.card-corner.tl { left: 36px; }
+.card-corner.tr { right: 36px; text-align: right; }
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px 0;
+}
+
+.card-spanish {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.card-pronunciation {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.card-english {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.card-note {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-style: italic;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+/* VERB CONJUGATION TABLE */
+.verb-table {
+  width: 100%;
+  max-width: 360px;
+  margin: 16px auto 0;
+  border-collapse: collapse;
+}
+
+.verb-table tr { border-bottom: 1px dashed rgba(60, 40, 20, 0.15); }
+.verb-table tr:last-child { border-bottom: none; }
+.verb-table td {
+  padding: 10px 8px;
+  font-size: 16px;
+}
+.verb-table .pronoun {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  width: 50%;
+}
+.verb-table .form {
+  text-align: right;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.flip-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: auto;
+  padding-top: 16px;
+  opacity: 0.6;
+}
+
+/* QUIZ MODE */
+.quiz-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 18px;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  border: 2px solid rgba(60, 40, 20, 0.2);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.6);
+  color: var(--ink);
+  margin-top: 16px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.quiz-input:focus { border-color: var(--accent); }
+
+.quiz-input.correct { border-color: var(--mastered); background: rgba(61, 102, 96, 0.08); }
+.quiz-input.incorrect { border-color: var(--accent); background: rgba(200, 71, 43, 0.08); }
+
+.quiz-feedback {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 12px;
+  min-height: 24px;
+  text-align: center;
+}
+
+.quiz-feedback.correct { color: var(--mastered); }
+.quiz-feedback.incorrect { color: var(--accent); }
+
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 1px solid;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  letter-spacing: 0.02em;
+}
+
+.action-btn.again { color: var(--learning); border-color: var(--learning); }
+.action-btn.again:hover { background: var(--learning); color: var(--paper); }
+
+.action-btn.good { color: var(--gold); border-color: var(--gold); }
+.action-btn.good:hover { background: var(--gold); color: var(--paper); }
+
+.action-btn.easy { color: var(--mastered); border-color: var(--mastered); }
+.action-btn.easy:hover { background: var(--mastered); color: var(--paper); }
+
+.action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* EMPTY STATE */
+.empty-state {
+  text-align: center;
+  padding: 80px 32px;
+  color: var(--ink-soft);
+}
+
+.empty-state h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.empty-state p { font-size: 14px; max-width: 320px; margin: 0 auto; line-height: 1.5; }
+
+/* PROGRESS DOTS */
+.progress-bar {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(42, 34, 24, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 540px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px var(--shadow-deep);
+  position: relative;
+}
+
+.modal h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.modal-subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  line-height: 1;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.6);
+  color: var(--ink);
+  outline: none;
+}
+
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+
+.field textarea { min-height: 100px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.verb-rows { display: grid; gap: 8px; }
+.verb-rows input { font-family: 'Fraunces', serif; }
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(60, 40, 20, 0.15);
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 12px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px var(--shadow-deep);
+  transition: transform 0.3s ease;
+  z-index: 200;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 600px) {
+  body { padding: 20px 16px 40px; }
+  header { padding-top: 40px; }
+  .github-link { font-size: 10px; padding: 6px 10px; }
+  .controls { gap: 6px; }
+  .control-group { padding: 3px; }
+  .btn { padding: 7px 12px; font-size: 12px; }
+  .stats { gap: 16px; padding: 12px; }
+  .card-face { padding: 32px 24px; }
+  .card-corner.tl { left: 28px; top: 28px; }
+  .card-corner.tr { right: 28px; top: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://github.com/micahfaas/MicahLearnsSpanish" class="github-link" target="_blank" rel="noopener" id="githubLink">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <span>View on GitHub</span>
+  </a>
+
+  <div class="eyebrow">Cuaderno · Bend → Buenos Aires → Lima</div>
+  <h1>Micah Learns <em>Spanish</em></h1>
+  <p class="tagline">"Despacio, que tengo prisa."</p>
+  <p class="tagline-translation">Slowly — I'm in a hurry</p>
+</header>
+
+<div class="sync-bar" id="syncBar">
+  <span class="dot syncing" id="syncDot"></span>
+  <span id="syncText">Loading deck…</span>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="controls">
+  <div class="control-group" id="modeToggle">
+    <button class="btn active" data-mode="flip">Flip Mode</button>
+    <button class="btn" data-mode="quiz">Quiz Mode</button>
+  </div>
+  <div class="control-group" id="directionToggle">
+    <button class="btn active" data-direction="es-en">ES → EN</button>
+    <button class="btn" data-direction="en-es">EN → ES</button>
+  </div>
+  <div class="control-group" id="filterToggle">
+    <button class="btn active" data-filter="all">All</button>
+    <button class="btn" data-filter="new">New</button>
+    <button class="btn" data-filter="learning">Learning</button>
+    <button class="btn" data-filter="mastered">Mastered</button>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn-ghost btn" id="addBtn">+ Add Card</button>
+  <button class="btn-ghost btn" id="importBtn">Import JSON</button>
+  <button class="btn-ghost btn" id="exportBtn">Export Deck</button>
+  <button class="btn-ghost btn" id="shuffleBtn">Shuffle</button>
+  <button class="btn-ghost btn" id="reloadBtn">Sync from Repo</button>
+  <button class="btn-ghost btn" id="resetBtn">Reset Progress</button>
+</div>
+
+<div id="cardArea">
+  <!-- Card renders here -->
+</div>
+
+<!-- ADD/IMPORT MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <h2>Add to your deck</h2>
+    <p class="modal-subtitle">Build your vocabulary, one card at a time.</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="vocab">Vocabulary</button>
+      <button class="tab" data-tab="verb">Verb</button>
+      <button class="tab" data-tab="import">Import JSON</button>
+    </div>
+
+    <!-- VOCAB TAB -->
+    <div class="tab-content" id="tab-vocab">
+      <div class="field-row">
+        <div class="field">
+          <label>Spanish</label>
+          <input type="text" id="vocab-spanish" placeholder="¿Cómo está?">
+        </div>
+        <div class="field">
+          <label>English</label>
+          <input type="text" id="vocab-english" placeholder="How are you?">
+        </div>
+      </div>
+      <div class="field">
+        <label>Pronunciation (optional)</label>
+        <input type="text" id="vocab-pronunciation" placeholder="KOH-moh ehs-TAH">
+      </div>
+      <div class="field">
+        <label>Note (optional)</label>
+        <input type="text" id="vocab-note" placeholder="Formal — used with strangers, older people">
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <select id="vocab-category">
+          <option value="greetings">Greetings</option>
+          <option value="courtesy">Courtesy</option>
+          <option value="introductions">Introductions</option>
+          <option value="origins">Origins / Places</option>
+          <option value="food">Food & Drink</option>
+          <option value="hotel">Hotel</option>
+          <option value="transport">Transportation</option>
+          <option value="hiking">Hiking / Outdoors</option>
+          <option value="numbers">Numbers</option>
+          <option value="time">Time / Dates</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-ghost btn" id="cancelVocab">Cancel</button>
+        <button class="btn-primary" id="saveVocab">Save Card</button>
+      </div>
+    </div>
+
+    <!-- VERB TAB -->
+    <div class="tab-content" id="tab-verb" style="display:none">
+      <div class="field-row">
+        <div class="field">
+          <label>Infinitive</label>
+          <input type="text" id="verb-infinitive" placeholder="ser">
+        </div>
+        <div class="field">
+          <label>Meaning</label>
+          <input type="text" id="verb-meaning" placeholder="to be (permanent)">
+        </div>
+      </div>
+      <div class="field">
+        <label>Tense</label>
+        <select id="verb-tense">
+          <option value="present">Present</option>
+          <option value="preterite">Preterite (past)</option>
+          <option value="imperfect">Imperfect (past)</option>
+          <option value="future">Future</option>
+          <option value="conditional">Conditional</option>
+          <option value="subjunctive">Subjunctive</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Conjugations</label>
+        <div class="verb-rows">
+          <div class="field-row"><label style="align-self:center; padding-top:8px;">yo (I)</label><input type="text" id="verb-yo" placeholder="soy"></div>
+          <div class="field-row"><label style="align-self:center; padding-top:8px;">tú (you, informal)</label><input type="text" id="verb-tu" placeholder="eres"></div>
+          <div class="field-row"><label style="align-self:center; padding-top:8px;">él/ella/usted</label><input type="text" id="verb-el" placeholder="es"></div>
+          <div class="field-row"><label style="align-self:center; padding-top:8px;">nosotros (we)</label><input type="text" id="verb-nos" placeholder="somos"></div>
+          <div class="field-row"><label style="align-self:center; padding-top:8px;">ellos/ustedes</label><input type="text" id="verb-ellos" placeholder="son"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Note (optional)</label>
+        <input type="text" id="verb-note" placeholder="Used for permanent things: identity, origin, profession">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-ghost btn" id="cancelVerb">Cancel</button>
+        <button class="btn-primary" id="saveVerb">Save Verb</button>
+      </div>
+    </div>
+
+    <!-- IMPORT TAB -->
+    <div class="tab-content" id="tab-import" style="display:none">
+      <div class="field">
+        <label>Paste JSON from your daily lesson</label>
+        <textarea id="import-json" placeholder='[{"type":"vocab","spanish":"hola","english":"hello","pronunciation":"OH-lah","category":"greetings"}]'></textarea>
+      </div>
+      <p style="font-size:12px; color:var(--ink-soft); line-height:1.5; margin-bottom:16px;">
+        Paste any deck JSON here for a one-off import. For automatic daily updates, drop the JSON into a <code>decks/day-XX.json</code> file in the repo and let Claude Code push it.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-ghost btn" id="cancelImport">Cancel</button>
+        <button class="btn-primary" id="doImport">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============== CONFIG ==============
+// Manifest file lists all daily deck files. Updated by Claude Code on push.
+const MANIFEST_PATH = 'decks/manifest.json';
+
+// ============== STATE & STORAGE ==============
+const STORAGE_KEY = 'micah-spanish-v1';
+
+let state = loadState();
+let currentIndex = 0;
+let mode = "flip";
+let direction = "es-en";
+let filter = "all";
+let isFlipped = false;
+let quizSubmitted = false;
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {}
+  return { cards: [], importedDeckIds: [] };
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    showToast("Could not save — storage may be full");
+  }
+}
+
+// ============== REPO SYNC ==============
+async function syncFromRepo() {
+  const dot = document.getElementById('syncDot');
+  const text = document.getElementById('syncText');
+  dot.className = 'dot syncing';
+  text.textContent = 'Checking repo for new cards…';
+
+  try {
+    // Add cache-buster so updates are picked up
+    const manifestRes = await fetch(`${MANIFEST_PATH}?t=${Date.now()}`);
+    if (!manifestRes.ok) throw new Error('No manifest');
+    const manifest = await manifestRes.json();
+
+    const decks = manifest.decks || [];
+    let totalAdded = 0;
+    let totalSkipped = 0;
+
+    for (const deck of decks) {
+      if (state.importedDeckIds.includes(deck.id)) continue;
+
+      try {
+        const deckRes = await fetch(`decks/${deck.file}?t=${Date.now()}`);
+        if (!deckRes.ok) continue;
+        const deckCards = await deckRes.json();
+
+        deckCards.forEach(c => {
+          // Dedupe by spanish/infinitive
+          const exists = state.cards.find(existing =>
+            (existing.spanish && c.spanish && existing.spanish === c.spanish) ||
+            (existing.infinitive && c.infinitive &&
+             existing.infinitive === c.infinitive &&
+             existing.tense === (c.tense || 'present'))
+          );
+          if (exists) { totalSkipped++; return; }
+
+          state.cards.push({
+            id: `${deck.id}-${totalAdded}-${Date.now()}`,
+            ...c,
+            sourceDay: deck.id,
+            status: "new",
+            reviews: 0,
+            correct: 0
+          });
+          totalAdded++;
+        });
+        state.importedDeckIds.push(deck.id);
+      } catch (e) {
+        console.error(`Failed to load ${deck.file}`, e);
+      }
+    }
+
+    saveState();
+    dot.className = 'dot';
+    if (totalAdded > 0) {
+      text.textContent = `Synced · ${totalAdded} new card${totalAdded !== 1 ? 's' : ''} added`;
+      showToast(`+${totalAdded} new card${totalAdded !== 1 ? 's' : ''} from repo`);
+    } else {
+      text.textContent = `Up to date · ${state.cards.length} cards · ${manifest.decks?.length || 0} lesson${manifest.decks?.length !== 1 ? 's' : ''} loaded`;
+    }
+    renderStats();
+    renderCard();
+  } catch (e) {
+    dot.className = 'dot error';
+    text.textContent = state.cards.length > 0
+      ? `Offline mode · ${state.cards.length} cards in browser`
+      : 'No deck found · use Add Card or Import JSON';
+    renderStats();
+    renderCard();
+  }
+}
+
+function getFilteredCards() {
+  if (filter === "all") return state.cards;
+  return state.cards.filter(c => c.status === filter);
+}
+
+// ============== RENDER ==============
+function renderStats() {
+  const total = state.cards.length;
+  const newCount = state.cards.filter(c => c.status === "new").length;
+  const learningCount = state.cards.filter(c => c.status === "learning").length;
+  const masteredCount = state.cards.filter(c => c.status === "mastered").length;
+
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="stat-value">${total}</div><div class="stat-label">Total</div></div>
+    <div class="stat"><div class="stat-value new">${newCount}</div><div class="stat-label">New</div></div>
+    <div class="stat"><div class="stat-value learning">${learningCount}</div><div class="stat-label">Learning</div></div>
+    <div class="stat"><div class="stat-value mastered">${masteredCount}</div><div class="stat-label">Mastered</div></div>
+  `;
+}
+
+function renderCard() {
+  const cards = getFilteredCards();
+  const cardArea = document.getElementById('cardArea');
+
+  if (cards.length === 0) {
+    cardArea.innerHTML = `
+      <div class="empty-state">
+        <h3>${state.cards.length === 0 ? 'Your notebook is empty' : 'Nothing in this filter'}</h3>
+        <p>${state.cards.length === 0
+          ? 'Sync from the repo to load daily lessons, or use Add Card to create one manually.'
+          : `No cards in "${filter}" status. Try a different filter.`}</p>
+      </div>
+    `;
+    return;
+  }
+
+  if (currentIndex >= cards.length) currentIndex = 0;
+  const card = cards[currentIndex];
+  isFlipped = false;
+  quizSubmitted = false;
+
+  if (card.type === "verb") renderVerbCard(card, cards);
+  else renderVocabCard(card, cards);
+}
+
+function renderVocabCard(card, cards) {
+  const cardArea = document.getElementById('cardArea');
+  const showSpanishFirst = direction === "es-en";
+
+  const front = showSpanishFirst
+    ? `
+      <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+      <div class="card-corner tr">${card.status}</div>
+      <div class="card-content">
+        <div class="card-spanish">${card.spanish}</div>
+        ${card.pronunciation ? `<div class="card-pronunciation">${card.pronunciation}</div>` : ''}
+      </div>
+      ${mode === "flip" ? '<div class="flip-hint">Click to reveal</div>' : ''}
+    `
+    : `
+      <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+      <div class="card-corner tr">${card.status}</div>
+      <div class="card-content">
+        <div class="card-english">${card.english}</div>
+      </div>
+      ${mode === "flip" ? '<div class="flip-hint">Click to reveal</div>' : ''}
+    `;
+
+  const back = showSpanishFirst
+    ? `
+      <div class="card-corner tl">translation</div>
+      <div class="card-content">
+        <div class="card-english">${card.english}</div>
+        ${card.note ? `<div class="card-note">${card.note}</div>` : ''}
+      </div>
+    `
+    : `
+      <div class="card-corner tl">en español</div>
+      <div class="card-content">
+        <div class="card-spanish">${card.spanish}</div>
+        ${card.pronunciation ? `<div class="card-pronunciation">${card.pronunciation}</div>` : ''}
+        ${card.note ? `<div class="card-note">${card.note}</div>` : ''}
+      </div>
+    `;
+
+  if (mode === "flip") {
+    cardArea.innerHTML = `
+      <div class="card-stage">
+        <div class="card" id="theCard">
+          <div class="card-face">${front}</div>
+          <div class="card-face card-back">${back}</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="action-btn again" data-rate="again">Again</button>
+        <button class="action-btn good" data-rate="good">Good</button>
+        <button class="action-btn easy" data-rate="easy">Easy</button>
+      </div>
+      <div class="progress-bar">${currentIndex + 1} / ${cards.length}</div>
+    `;
+    document.getElementById('theCard').addEventListener('click', flipCard);
+  } else {
+    const promptText = showSpanishFirst ? card.spanish : card.english;
+    const expected = showSpanishFirst ? card.english : card.spanish;
+    cardArea.innerHTML = `
+      <div class="card-stage">
+        <div class="card-face" style="position:relative; min-height:auto;">
+          <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+          <div class="card-corner tr">quiz</div>
+          <div class="card-content">
+            <div class="card-spanish" style="font-size:32px;">${promptText}</div>
+            <input type="text" class="quiz-input" id="quizInput" placeholder="${showSpanishFirst ? 'Type the English…' : 'Type in Spanish…'}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="quiz-feedback" id="quizFeedback"></div>
+          </div>
+        </div>
+      </div>
+      <div class="actions" id="quizActions">
+        <button class="action-btn good" id="checkBtn">Check Answer</button>
+      </div>
+      <div class="progress-bar">${currentIndex + 1} / ${cards.length}</div>
+    `;
+
+    const input = document.getElementById('quizInput');
+    input.focus();
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        if (!quizSubmitted) checkQuizAnswer(expected, card);
+        else nextCard();
+      }
+    });
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      if (!quizSubmitted) checkQuizAnswer(expected, card);
+      else nextCard();
+    });
+  }
+}
+
+function renderVerbCard(card, cards) {
+  const cardArea = document.getElementById('cardArea');
+
+  const front = `
+    <div class="card-corner tl">verb · ${card.tense || 'present'}</div>
+    <div class="card-corner tr">${card.status}</div>
+    <div class="card-content">
+      <div class="card-spanish">${card.infinitive}</div>
+      <div class="card-english" style="font-size:22px; margin-top:8px;">${card.meaning}</div>
+    </div>
+    <div class="flip-hint">Click to reveal conjugations</div>
+  `;
+
+  const back = `
+    <div class="card-corner tl">${card.infinitive} · ${card.tense || 'present'}</div>
+    <div class="card-content">
+      <table class="verb-table">
+        <tr><td class="pronoun">yo</td><td class="form">${card.forms.yo || '—'}</td></tr>
+        <tr><td class="pronoun">tú</td><td class="form">${card.forms.tu || '—'}</td></tr>
+        <tr><td class="pronoun">él · ella · usted</td><td class="form">${card.forms.el || '—'}</td></tr>
+        <tr><td class="pronoun">nosotros</td><td class="form">${card.forms.nos || '—'}</td></tr>
+        <tr><td class="pronoun">ellos · ustedes</td><td class="form">${card.forms.ellos || '—'}</td></tr>
+      </table>
+      ${card.note ? `<div class="card-note" style="margin-top:20px;">${card.note}</div>` : ''}
+    </div>
+  `;
+
+  cardArea.innerHTML = `
+    <div class="card-stage">
+      <div class="card" id="theCard">
+        <div class="card-face">${front}</div>
+        <div class="card-face card-back">${back}</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="action-btn again" data-rate="again">Again</button>
+      <button class="action-btn good" data-rate="good">Good</button>
+      <button class="action-btn easy" data-rate="easy">Easy</button>
+    </div>
+    <div class="progress-bar">${currentIndex + 1} / ${cards.length}</div>
+  `;
+  document.getElementById('theCard').addEventListener('click', flipCard);
+}
+
+function flipCard() {
+  const card = document.getElementById('theCard');
+  if (card) {
+    isFlipped = !isFlipped;
+    card.classList.toggle('flipped');
+  }
+}
+
+function checkQuizAnswer(expected, card) {
+  const input = document.getElementById('quizInput');
+  const feedback = document.getElementById('quizFeedback');
+  const userAnswer = normalize(input.value);
+  const correct = normalize(expected);
+
+  const isCorrect = userAnswer === correct ||
+                    userAnswer === stripAccents(correct) ||
+                    stripAccents(userAnswer) === stripAccents(correct);
+
+  quizSubmitted = true;
+
+  if (isCorrect) {
+    input.classList.add('correct');
+    feedback.classList.add('correct');
+    feedback.innerHTML = `✓ Correct! ${expected !== input.value ? `<br><small style="opacity:0.7">Exact: ${expected}</small>` : ''}`;
+    rateCard(card, 'good');
+  } else {
+    input.classList.add('incorrect');
+    feedback.classList.add('incorrect');
+    feedback.innerHTML = `Not quite. Answer: <strong>${expected}</strong>`;
+    rateCard(card, 'again');
+  }
+
+  document.getElementById('quizActions').innerHTML = `
+    <button class="action-btn good" id="nextBtn">Next →</button>
+  `;
+  document.getElementById('nextBtn').addEventListener('click', nextCard);
+}
+
+function normalize(str) {
+  return (str || '').toLowerCase().trim().replace(/[¿?¡!.,;]/g, '').replace(/\s+/g, ' ');
+}
+function stripAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ñ/g, 'n');
+}
+
+// ============== CARD ACTIONS ==============
+function rateCard(card, rating) {
+  const realCard = state.cards.find(c => c.id === card.id);
+  if (!realCard) return;
+
+  realCard.reviews = (realCard.reviews || 0) + 1;
+
+  if (rating === 'again') {
+    realCard.status = 'learning';
+  } else if (rating === 'good') {
+    realCard.correct = (realCard.correct || 0) + 1;
+    if (realCard.status === 'new') realCard.status = 'learning';
+    else if (realCard.status === 'learning' && realCard.correct >= 2) realCard.status = 'mastered';
+  } else if (rating === 'easy') {
+    realCard.correct = (realCard.correct || 0) + 1;
+    realCard.status = 'mastered';
+  }
+
+  saveState();
+  renderStats();
+}
+
+function nextCard() {
+  const cards = getFilteredCards();
+  currentIndex = (currentIndex + 1) % cards.length;
+  renderCard();
+}
+
+function shuffleDeck() {
+  for (let i = state.cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [state.cards[i], state.cards[j]] = [state.cards[j], state.cards[i]];
+  }
+  currentIndex = 0;
+  saveState();
+  renderCard();
+  showToast("Deck shuffled");
+}
+
+// ============== EVENT LISTENERS ==============
+document.getElementById('modeToggle').addEventListener('click', e => {
+  if (e.target.dataset.mode) {
+    mode = e.target.dataset.mode;
+    document.querySelectorAll('#modeToggle .btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    renderCard();
+  }
+});
+
+document.getElementById('directionToggle').addEventListener('click', e => {
+  if (e.target.dataset.direction) {
+    direction = e.target.dataset.direction;
+    document.querySelectorAll('#directionToggle .btn').forEach(b => b.classList.toggle('active', b.dataset.direction === direction));
+    renderCard();
+  }
+});
+
+document.getElementById('filterToggle').addEventListener('click', e => {
+  if (e.target.dataset.filter) {
+    filter = e.target.dataset.filter;
+    currentIndex = 0;
+    document.querySelectorAll('#filterToggle .btn').forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+    renderCard();
+  }
+});
+
+document.body.addEventListener('click', e => {
+  if (e.target.dataset.rate) {
+    const cards = getFilteredCards();
+    if (cards[currentIndex]) {
+      rateCard(cards[currentIndex], e.target.dataset.rate);
+      nextCard();
+    }
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+  if (document.getElementById('modal').classList.contains('active')) return;
+
+  if (e.key === ' ') { e.preventDefault(); flipCard(); }
+  else if (e.key === 'ArrowRight') nextCard();
+  else if (e.key === '1') document.querySelector('[data-rate="again"]')?.click();
+  else if (e.key === '2') document.querySelector('[data-rate="good"]')?.click();
+  else if (e.key === '3') document.querySelector('[data-rate="easy"]')?.click();
+});
+
+// ============== MODAL ==============
+const modal = document.getElementById('modal');
+
+function openModal(tab = 'vocab') {
+  modal.classList.add('active');
+  switchTab(tab);
+}
+function closeModal() { modal.classList.remove('active'); }
+
+document.getElementById('addBtn').addEventListener('click', () => openModal('vocab'));
+document.getElementById('importBtn').addEventListener('click', () => openModal('import'));
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+function switchTab(tabName) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
+  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+  document.getElementById('tab-' + tabName).style.display = 'block';
+}
+
+document.getElementById('cancelVocab').addEventListener('click', closeModal);
+document.getElementById('cancelVerb').addEventListener('click', closeModal);
+document.getElementById('cancelImport').addEventListener('click', closeModal);
+
+document.getElementById('saveVocab').addEventListener('click', () => {
+  const spanish = document.getElementById('vocab-spanish').value.trim();
+  const english = document.getElementById('vocab-english').value.trim();
+  if (!spanish || !english) { showToast("Spanish and English are required"); return; }
+
+  state.cards.push({
+    id: `card-${Date.now()}`,
+    type: "vocab",
+    spanish,
+    english,
+    pronunciation: document.getElementById('vocab-pronunciation').value.trim(),
+    note: document.getElementById('vocab-note').value.trim(),
+    category: document.getElementById('vocab-category').value,
+    status: "new",
+    reviews: 0,
+    correct: 0
+  });
+
+  ['vocab-spanish','vocab-english','vocab-pronunciation','vocab-note'].forEach(id => document.getElementById(id).value = '');
+  saveState();
+  renderStats();
+  renderCard();
+  closeModal();
+  showToast("Card added");
+});
+
+document.getElementById('saveVerb').addEventListener('click', () => {
+  const infinitive = document.getElementById('verb-infinitive').value.trim();
+  const meaning = document.getElementById('verb-meaning').value.trim();
+  if (!infinitive || !meaning) { showToast("Infinitive and meaning are required"); return; }
+
+  state.cards.push({
+    id: `verb-${Date.now()}`,
+    type: "verb",
+    infinitive,
+    meaning,
+    tense: document.getElementById('verb-tense').value,
+    note: document.getElementById('verb-note').value.trim(),
+    forms: {
+      yo: document.getElementById('verb-yo').value.trim(),
+      tu: document.getElementById('verb-tu').value.trim(),
+      el: document.getElementById('verb-el').value.trim(),
+      nos: document.getElementById('verb-nos').value.trim(),
+      ellos: document.getElementById('verb-ellos').value.trim()
+    },
+    status: "new",
+    reviews: 0,
+    correct: 0
+  });
+
+  ['verb-infinitive','verb-meaning','verb-yo','verb-tu','verb-el','verb-nos','verb-ellos','verb-note'].forEach(id => document.getElementById(id).value = '');
+  saveState();
+  renderStats();
+  renderCard();
+  closeModal();
+  showToast("Verb added");
+});
+
+document.getElementById('doImport').addEventListener('click', () => {
+  const json = document.getElementById('import-json').value.trim();
+  if (!json) { showToast("Paste some JSON first"); return; }
+
+  let parsed;
+  try { parsed = JSON.parse(json); }
+  catch (e) { showToast("Invalid JSON — check for typos"); return; }
+
+  if (!Array.isArray(parsed)) { showToast("JSON should be an array of cards"); return; }
+
+  let added = 0, skipped = 0;
+  parsed.forEach(c => {
+    const exists = state.cards.find(existing =>
+      (existing.spanish && c.spanish && existing.spanish === c.spanish) ||
+      (existing.infinitive && c.infinitive && existing.infinitive === c.infinitive && existing.tense === (c.tense || 'present'))
+    );
+    if (exists) { skipped++; return; }
+
+    state.cards.push({
+      id: `import-${Date.now()}-${added}`,
+      ...c,
+      status: "new",
+      reviews: 0,
+      correct: 0
+    });
+    added++;
+  });
+
+  saveState();
+  renderStats();
+  renderCard();
+  closeModal();
+  document.getElementById('import-json').value = '';
+  showToast(`Added ${added} card${added !== 1 ? 's' : ''}${skipped ? `, skipped ${skipped} duplicate${skipped !== 1 ? 's' : ''}` : ''}`);
+});
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const dataStr = JSON.stringify(state.cards, null, 2);
+  const blob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `cuaderno-deck-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Deck exported");
+});
+
+document.getElementById('shuffleBtn').addEventListener('click', shuffleDeck);
+document.getElementById('reloadBtn').addEventListener('click', syncFromRepo);
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (!confirm("Reset all progress? Cards stay, but status resets to 'new' for everything.")) return;
+  state.cards.forEach(c => { c.status = 'new'; c.reviews = 0; c.correct = 0; });
+  saveState();
+  renderStats();
+  renderCard();
+  showToast("Progress reset");
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ============== INIT ==============
+renderStats();
+syncFromRepo();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[
+  {"type":"vocab","spanish":"Hola","english":"Hi / Hello","pronunciation":"OH-lah","category":"greetings","note":""},
+  {"type":"vocab","spanish":"Buenos días","english":"Good morning","pronunciation":"BWAY-nohs DEE-ahs","category":"greetings","note":""},
+  {"type":"vocab","spanish":"Buenas tardes","english":"Good afternoon","pronunciation":"BWAY-nahs TAR-dehs","category":"greetings","note":""},
+  {"type":"vocab","spanish":"Buenas noches","english":"Good evening / night","pronunciation":"BWAY-nahs NOH-chehs","category":"greetings","note":"Used as both greeting and goodbye after dark"},
+  {"type":"vocab","spanish":"¿Cómo estás?","english":"How are you?","pronunciation":"KOH-moh ehs-TAHS","category":"greetings","note":"Informal — with peers, friends, family"},
+  {"type":"vocab","spanish":"¿Cómo está?","english":"How are you?","pronunciation":"KOH-moh ehs-TAH","category":"greetings","note":"Formal — with strangers, older people, staff"},
+  {"type":"vocab","spanish":"Mucho gusto","english":"Nice to meet you","pronunciation":"MOO-choh GOOS-toh","category":"introductions","note":"Literally 'much pleasure'"},
+  {"type":"vocab","spanish":"Me llamo...","english":"My name is...","pronunciation":"meh YAH-moh","category":"introductions","note":"Literally 'I call myself'"}
+]
