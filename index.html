@@ -42,10 +42,9 @@ body { padding: 32px 24px 60px; max-width: 960px; margin: 0 auto; }
 /* HEADER */
 header { margin-bottom: 32px; text-align: center; position: relative; }
 
-.github-link {
+.github-link, .help-link {
   position: absolute;
   top: 0;
-  right: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -60,15 +59,19 @@ header { margin-bottom: 32px; text-align: center; position: relative; }
   border-radius: 999px;
   transition: all 0.2s ease;
   background: rgba(255,255,255,0.3);
+  cursor: pointer;
 }
 
-.github-link:hover {
+.github-link { right: 0; }
+.help-link { left: 0; font-family: 'JetBrains Mono', monospace; }
+
+.github-link:hover, .help-link:hover {
   color: var(--ink);
   background: rgba(255,255,255,0.6);
   border-color: var(--ink);
 }
 
-.github-link svg { width: 14px; height: 14px; }
+.github-link svg, .help-link svg { width: 14px; height: 14px; }
 
 .eyebrow {
   font-family: 'JetBrains Mono', monospace;
@@ -242,6 +245,33 @@ h1 em {
 }
 
 .btn-ghost:hover { background: rgba(60, 40, 20, 0.05); }
+
+.category-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  padding: 8px 32px 8px 14px;
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  border-radius: 999px;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%235a4a36' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  max-width: 240px;
+}
+
+.category-select:hover {
+  color: var(--ink);
+  background-color: rgba(60, 40, 20, 0.05);
+}
+
+.category-select:focus { outline: none; border-color: var(--ink); }
 
 /* CARD */
 .card-stage {
@@ -575,6 +605,42 @@ h1 em {
 .verb-rows { display: grid; gap: 8px; }
 .verb-rows input { font-family: 'Fraunces', serif; }
 
+.category-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(255,255,255,0.4);
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  border-radius: 4px;
+}
+
+.category-checkboxes label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.category-checkboxes input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
 .modal-actions {
   display: flex;
   gap: 12px;
@@ -622,6 +688,58 @@ h1 em {
 
 .toast.show { transform: translateX(-50%) translateY(0); }
 
+/* HELP MODAL */
+.help-section { margin-bottom: 20px; }
+.help-section:last-child { margin-bottom: 0; }
+
+.help-section h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.help-section p, .help-section li {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.help-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.help-section li {
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(60, 40, 20, 0.15);
+}
+
+.help-section li:last-child { border-bottom: none; }
+
+.help-section li strong {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.kbd {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(60, 40, 20, 0.2);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
 @media (max-width: 600px) {
   body { padding: 20px 16px 40px; }
   header { padding-top: 40px; }
@@ -639,15 +757,17 @@ h1 em {
 <body>
 
 <header>
+  <button type="button" class="help-link" id="helpBtn" aria-label="How to use this app">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>How to Use</span>
+  </button>
+
   <a href="https://github.com/micahfaas/MicahLearnsSpanish" class="github-link" target="_blank" rel="noopener" id="githubLink">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <span>View on GitHub</span>
   </a>
 
-  <div class="eyebrow">Cuaderno · Bend → Buenos Aires → Lima</div>
   <h1>Micah Learns <em>Spanish</em></h1>
-  <p class="tagline">"Despacio, que tengo prisa."</p>
-  <p class="tagline-translation">Slowly — I'm in a hurry</p>
 </header>
 
 <div class="sync-bar" id="syncBar">
@@ -675,6 +795,9 @@ h1 em {
 </div>
 
 <div class="controls">
+  <select id="categoryFilter" class="category-select" aria-label="Filter by category">
+    <option value="all">All Categories</option>
+  </select>
   <button class="btn-ghost btn" id="addBtn">+ Add Card</button>
   <button class="btn-ghost btn" id="importBtn">Import JSON</button>
   <button class="btn-ghost btn" id="exportBtn">Export Deck</button>
@@ -721,20 +844,8 @@ h1 em {
         <input type="text" id="vocab-note" placeholder="Formal — used with strangers, older people">
       </div>
       <div class="field">
-        <label>Category</label>
-        <select id="vocab-category">
-          <option value="greetings">Greetings</option>
-          <option value="courtesy">Courtesy</option>
-          <option value="introductions">Introductions</option>
-          <option value="origins">Origins / Places</option>
-          <option value="food">Food & Drink</option>
-          <option value="hotel">Hotel</option>
-          <option value="transport">Transportation</option>
-          <option value="hiking">Hiking / Outdoors</option>
-          <option value="numbers">Numbers</option>
-          <option value="time">Time / Dates</option>
-          <option value="other">Other</option>
-        </select>
+        <label>Categories (pick one or more)</label>
+        <div class="category-checkboxes" id="vocab-categories"></div>
       </div>
       <div class="modal-actions">
         <button class="btn-ghost btn" id="cancelVocab">Cancel</button>
@@ -779,6 +890,10 @@ h1 em {
         <label>Note (optional)</label>
         <input type="text" id="verb-note" placeholder="Used for permanent things: identity, origin, profession">
       </div>
+      <div class="field">
+        <label>Categories (verbs pre-checked; add topics if relevant)</label>
+        <div class="category-checkboxes" id="verb-categories"></div>
+      </div>
       <div class="modal-actions">
         <button class="btn-ghost btn" id="cancelVerb">Cancel</button>
         <button class="btn-primary" id="saveVerb">Save Verb</button>
@@ -802,12 +917,134 @@ h1 em {
   </div>
 </div>
 
+<!-- HELP MODAL -->
+<div class="modal-overlay" id="helpModal">
+  <div class="modal">
+    <button class="modal-close" id="helpModalClose">×</button>
+    <h2>How to Use</h2>
+    <p class="modal-subtitle">Your daily Spanish practice, in one place.</p>
+
+    <div class="help-section">
+      <h3>Study Modes</h3>
+      <ul>
+        <li><strong>Flip Mode</strong> — see the prompt, click the card (or press <span class="kbd">space</span>) to flip, then rate yourself.</li>
+        <li><strong>Quiz Mode</strong> — type your answer and press <span class="kbd">Enter</span>. Correct answers auto-rate as <em>Good</em>; wrong ones as <em>Again</em>.</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>Direction</h3>
+      <ul>
+        <li><strong>ES → EN</strong> — Spanish prompt, recall the English.</li>
+        <li><strong>EN → ES</strong> — English prompt, recall the Spanish.</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>Filters</h3>
+      <ul>
+        <li><strong>Status</strong> — All / New / Learning / Mastered.</li>
+        <li><strong>Category</strong> — pick a topic to focus on (e.g. Greetings, Verbs). Composes with status, so you can study, say, "Learning verbs" only.</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>Rating Cards</h3>
+      <ul>
+        <li><strong>Again</strong> — moves the card to <em>Learning</em>.</li>
+        <li><strong>Good</strong> — promotes <em>New</em> to <em>Learning</em>; promotes <em>Learning</em> to <em>Mastered</em> after 2 corrects.</li>
+        <li><strong>Easy</strong> — instantly <em>Mastered</em>.</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>Keyboard Shortcuts</h3>
+      <ul>
+        <li><span class="kbd">space</span> &nbsp;flip the card</li>
+        <li><span class="kbd">→</span> &nbsp;next card</li>
+        <li><span class="kbd">1</span> &nbsp;rate Again</li>
+        <li><span class="kbd">2</span> &nbsp;rate Good</li>
+        <li><span class="kbd">3</span> &nbsp;rate Easy</li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h3>Decks &amp; Sync</h3>
+      <ul>
+        <li><strong>Sync from Repo</strong> — pulls any new daily lessons from GitHub. Already-imported lessons are skipped.</li>
+        <li><strong>+ Add Card</strong> — manually create a vocab or verb card.</li>
+        <li><strong>Import JSON</strong> — paste a deck for a one-off import.</li>
+        <li><strong>Export Deck</strong> — download your current deck as JSON.</li>
+        <li><strong>Shuffle</strong> — randomize the order.</li>
+        <li><strong>Reset Progress</strong> — keep cards, set everything back to <em>New</em>.</li>
+      </ul>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-primary" id="helpModalDone">Got it</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ============== CONFIG ==============
 // Manifest file lists all daily deck files. Updated by Claude Code on push.
 const MANIFEST_PATH = 'decks/manifest.json';
+
+const ALL_CATEGORIES = [
+  // Travel functional
+  "greetings",
+  "courtesy",
+  "introductions",
+  "origins",
+  "food",
+  "drinks",
+  "hotel",
+  "transport",
+  "hiking",
+  "shopping",
+  "museums",
+  "emergencies",
+  // Building blocks
+  "numbers",
+  "time",
+  "colors",
+  "family",
+  "body",
+  "weather",
+  // Grammar
+  "verbs",
+  "pronouns",
+  "prepositions",
+  "conjunctions",
+  "adjectives",
+  "adverbs",
+  // Conversational
+  "questions",
+  "feelings",
+  "opinions",
+  "small_talk",
+  // Special
+  "regional_argentina",
+  "regional_peru",
+  "idioms"
+];
+
+function categoryDisplayName(cat) {
+  if (cat === 'small_talk') return 'Small Talk';
+  if (cat === 'regional_argentina') return 'Argentina (Regional)';
+  if (cat === 'regional_peru') return 'Peru (Regional)';
+  return cat.charAt(0).toUpperCase() + cat.slice(1);
+}
+
+function getCategories(card) {
+  const out = [];
+  if (Array.isArray(card.categories)) out.push(...card.categories);
+  if (typeof card.category === 'string' && card.category) out.push(card.category);
+  return [...new Set(out.filter(Boolean))];
+}
 
 // ============== STATE & STORAGE ==============
 const STORAGE_KEY = 'micah-spanish-v1';
@@ -823,9 +1060,15 @@ let quizSubmitted = false;
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (!parsed.selectedCategory) parsed.selectedCategory = 'all';
+      if (!Array.isArray(parsed.importedDeckIds)) parsed.importedDeckIds = [];
+      if (!Array.isArray(parsed.cards)) parsed.cards = [];
+      return parsed;
+    }
   } catch (e) {}
-  return { cards: [], importedDeckIds: [] };
+  return { cards: [], importedDeckIds: [], selectedCategory: 'all' };
 }
 
 function saveState() {
@@ -896,6 +1139,7 @@ async function syncFromRepo() {
       text.textContent = `Up to date · ${state.cards.length} cards · ${manifest.decks?.length || 0} lesson${manifest.decks?.length !== 1 ? 's' : ''} loaded`;
     }
     renderStats();
+    renderCategoryDropdown();
     renderCard();
   } catch (e) {
     dot.className = 'dot error';
@@ -903,13 +1147,71 @@ async function syncFromRepo() {
       ? `Offline mode · ${state.cards.length} cards in browser`
       : 'No deck found · use Add Card or Import JSON';
     renderStats();
+    renderCategoryDropdown();
     renderCard();
   }
 }
 
 function getFilteredCards() {
-  if (filter === "all") return state.cards;
-  return state.cards.filter(c => c.status === filter);
+  const selectedCategory = state.selectedCategory || 'all';
+  return state.cards.filter(c => {
+    const statusOk = filter === 'all' || c.status === filter;
+    const categoryOk = selectedCategory === 'all' || getCategories(c).includes(selectedCategory);
+    return statusOk && categoryOk;
+  });
+}
+
+function renderCategoryDropdown() {
+  const select = document.getElementById('categoryFilter');
+  if (!select) return;
+
+  const counts = {};
+  state.cards.forEach(c => {
+    getCategories(c).forEach(cat => {
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+  });
+
+  // Include canonical categories with counts > 0, plus any non-canonical
+  // categories present in cards (so legacy values like "other" still appear).
+  const present = new Set([...ALL_CATEGORIES, ...Object.keys(counts)]);
+  const visible = [...present]
+    .filter(cat => (counts[cat] || 0) > 0)
+    .sort((a, b) => categoryDisplayName(a).localeCompare(categoryDisplayName(b)));
+
+  const total = state.cards.length;
+  const selected = state.selectedCategory || 'all';
+
+  select.innerHTML =
+    `<option value="all">All Categories (${total})</option>` +
+    visible.map(cat => `<option value="${cat}">${categoryDisplayName(cat)} (${counts[cat]})</option>`).join('');
+
+  if (selected !== 'all' && !visible.includes(selected)) {
+    state.selectedCategory = 'all';
+    saveState();
+    select.value = 'all';
+  } else {
+    select.value = selected;
+  }
+}
+
+function renderCategoryCheckboxes(containerId, presetChecked = []) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const sorted = [...ALL_CATEGORIES].sort((a, b) =>
+    categoryDisplayName(a).localeCompare(categoryDisplayName(b))
+  );
+  container.innerHTML = sorted.map(cat => `
+    <label>
+      <input type="checkbox" value="${cat}" ${presetChecked.includes(cat) ? 'checked' : ''}>
+      ${categoryDisplayName(cat)}
+    </label>
+  `).join('');
+}
+
+function getCheckedCategories(containerId) {
+  return [...document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`)]
+    .map(i => i.value);
 }
 
 // ============== RENDER ==============
@@ -958,7 +1260,7 @@ function renderVocabCard(card, cards) {
 
   const front = showSpanishFirst
     ? `
-      <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+      <div class="card-corner tl">${getCategories(card)[0] || 'uncategorized'}</div>
       <div class="card-corner tr">${card.status}</div>
       <div class="card-content">
         <div class="card-spanish">${card.spanish}</div>
@@ -967,7 +1269,7 @@ function renderVocabCard(card, cards) {
       ${mode === "flip" ? '<div class="flip-hint">Click to reveal</div>' : ''}
     `
     : `
-      <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+      <div class="card-corner tl">${getCategories(card)[0] || 'uncategorized'}</div>
       <div class="card-corner tr">${card.status}</div>
       <div class="card-content">
         <div class="card-english">${card.english}</div>
@@ -1014,7 +1316,7 @@ function renderVocabCard(card, cards) {
     cardArea.innerHTML = `
       <div class="card-stage">
         <div class="card-face" style="position:relative; min-height:auto;">
-          <div class="card-corner tl">${card.category || 'vocabulary'}</div>
+          <div class="card-corner tl">${getCategories(card)[0] || 'uncategorized'}</div>
           <div class="card-corner tr">quiz</div>
           <div class="card-content">
             <div class="card-spanish" style="font-size:32px;">${promptText}</div>
@@ -1198,6 +1500,13 @@ document.getElementById('filterToggle').addEventListener('click', e => {
   }
 });
 
+document.getElementById('categoryFilter').addEventListener('change', e => {
+  state.selectedCategory = e.target.value;
+  currentIndex = 0;
+  saveState();
+  renderCard();
+});
+
 document.body.addEventListener('click', e => {
   if (e.target.dataset.rate) {
     const cards = getFilteredCards();
@@ -1210,13 +1519,17 @@ document.body.addEventListener('click', e => {
 
 document.addEventListener('keydown', e => {
   if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
-  if (document.getElementById('modal').classList.contains('active')) return;
+  if (document.querySelector('.modal-overlay.active')) {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+    return;
+  }
 
   if (e.key === ' ') { e.preventDefault(); flipCard(); }
   else if (e.key === 'ArrowRight') nextCard();
   else if (e.key === '1') document.querySelector('[data-rate="again"]')?.click();
   else if (e.key === '2') document.querySelector('[data-rate="good"]')?.click();
   else if (e.key === '3') document.querySelector('[data-rate="easy"]')?.click();
+  else if (e.key === '?' || (e.shiftKey && e.key === '/')) openHelp();
 });
 
 // ============== MODAL ==============
@@ -1232,6 +1545,16 @@ document.getElementById('addBtn').addEventListener('click', () => openModal('voc
 document.getElementById('importBtn').addEventListener('click', () => openModal('import'));
 document.getElementById('modalClose').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+// ============== HELP MODAL ==============
+const helpModal = document.getElementById('helpModal');
+function openHelp() { helpModal.classList.add('active'); }
+function closeHelp() { helpModal.classList.remove('active'); }
+
+document.getElementById('helpBtn').addEventListener('click', openHelp);
+document.getElementById('helpModalClose').addEventListener('click', closeHelp);
+document.getElementById('helpModalDone').addEventListener('click', closeHelp);
+helpModal.addEventListener('click', e => { if (e.target === helpModal) closeHelp(); });
 
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => switchTab(tab.dataset.tab));
@@ -1252,6 +1575,8 @@ document.getElementById('saveVocab').addEventListener('click', () => {
   const english = document.getElementById('vocab-english').value.trim();
   if (!spanish || !english) { showToast("Spanish and English are required"); return; }
 
+  const categories = getCheckedCategories('vocab-categories');
+
   state.cards.push({
     id: `card-${Date.now()}`,
     type: "vocab",
@@ -1259,15 +1584,17 @@ document.getElementById('saveVocab').addEventListener('click', () => {
     english,
     pronunciation: document.getElementById('vocab-pronunciation').value.trim(),
     note: document.getElementById('vocab-note').value.trim(),
-    category: document.getElementById('vocab-category').value,
+    categories,
     status: "new",
     reviews: 0,
     correct: 0
   });
 
   ['vocab-spanish','vocab-english','vocab-pronunciation','vocab-note'].forEach(id => document.getElementById(id).value = '');
+  renderCategoryCheckboxes('vocab-categories');
   saveState();
   renderStats();
+  renderCategoryDropdown();
   renderCard();
   closeModal();
   showToast("Card added");
@@ -1278,6 +1605,9 @@ document.getElementById('saveVerb').addEventListener('click', () => {
   const meaning = document.getElementById('verb-meaning').value.trim();
   if (!infinitive || !meaning) { showToast("Infinitive and meaning are required"); return; }
 
+  const checked = getCheckedCategories('verb-categories');
+  const categories = checked.includes('verbs') ? checked : ['verbs', ...checked];
+
   state.cards.push({
     id: `verb-${Date.now()}`,
     type: "verb",
@@ -1285,6 +1615,7 @@ document.getElementById('saveVerb').addEventListener('click', () => {
     meaning,
     tense: document.getElementById('verb-tense').value,
     note: document.getElementById('verb-note').value.trim(),
+    categories,
     forms: {
       yo: document.getElementById('verb-yo').value.trim(),
       tu: document.getElementById('verb-tu').value.trim(),
@@ -1298,8 +1629,10 @@ document.getElementById('saveVerb').addEventListener('click', () => {
   });
 
   ['verb-infinitive','verb-meaning','verb-yo','verb-tu','verb-el','verb-nos','verb-ellos','verb-note'].forEach(id => document.getElementById(id).value = '');
+  renderCategoryCheckboxes('verb-categories', ['verbs']);
   saveState();
   renderStats();
+  renderCategoryDropdown();
   renderCard();
   closeModal();
   showToast("Verb added");
@@ -1335,6 +1668,7 @@ document.getElementById('doImport').addEventListener('click', () => {
 
   saveState();
   renderStats();
+  renderCategoryDropdown();
   renderCard();
   closeModal();
   document.getElementById('import-json').value = '';
@@ -1373,7 +1707,10 @@ function showToast(msg) {
 }
 
 // ============== INIT ==============
+renderCategoryCheckboxes('vocab-categories');
+renderCategoryCheckboxes('verb-categories', ['verbs']);
 renderStats();
+renderCategoryDropdown();
 syncFromRepo();
 </script>
 </body>
