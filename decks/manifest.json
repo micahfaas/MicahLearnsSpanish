@@ -2,6 +2,7 @@
   "decks": [
     { "id": "day-01", "file": "day-01.json", "date": "2026-04-25", "title": "Greetings & Introductions" },
     { "id": "day-02", "file": "day-02.json", "date": "2026-04-25", "title": "Courtesy, Origins & Ser" },
-    { "id": "day-0", "file": "day-0.json", "date": "2026-04-25", "title": "Test Deck — Categories" }
+    { "id": "day-0", "file": "day-0.json", "date": "2026-04-25", "title": "Test Deck — Categories" },
+    { "id": "day-03", "file": "day-03.json", "date": "2026-04-26", "title": "Estar, Feelings & Ser vs Estar" }
   ]
 }

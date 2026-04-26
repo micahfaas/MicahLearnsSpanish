@@ -1,0 +1,105 @@
+[
+  {
+    "type": "verb",
+    "infinitive": "estar",
+    "meaning": "to be (temporary states, locations)",
+    "tense": "present",
+    "note": "Use for feelings, conditions, and where something is located",
+    "categories": ["verbs", "feelings", "introductions"],
+    "forms": {
+      "yo": "estoy",
+      "tu": "estás",
+      "el": "está",
+      "nos": "estamos",
+      "ellos": "están"
+    }
+  },
+  {
+    "type": "vocab",
+    "spanish": "bien",
+    "english": "well / fine",
+    "pronunciation": "bee-EHN",
+    "note": "Use with estar: estoy bien = I'm fine",
+    "categories": ["feelings"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "mal",
+    "english": "bad / unwell",
+    "pronunciation": "mahl",
+    "note": "Use with estar: estoy mal = I'm not feeling well",
+    "categories": ["feelings"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "cansado / cansada",
+    "english": "tired (m/f)",
+    "pronunciation": "kahn-SAH-doh / kahn-SAH-dah",
+    "note": "Adjective changes ending based on speaker's gender",
+    "categories": ["feelings", "adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "feliz",
+    "english": "happy",
+    "pronunciation": "feh-LEES",
+    "note": "No gender change — same form for m/f",
+    "categories": ["feelings", "adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "ocupado / ocupada",
+    "english": "busy (m/f)",
+    "pronunciation": "oh-koo-PAH-doh / oh-koo-PAH-dah",
+    "note": "Use with estar — temporary state",
+    "categories": ["feelings", "adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "enfermo / enferma",
+    "english": "sick (m/f)",
+    "pronunciation": "ehn-FEHR-moh / ehn-FEHR-mah",
+    "note": "Use with estar — temporary state",
+    "categories": ["feelings", "adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "¿dónde?",
+    "english": "where?",
+    "pronunciation": "DOHN-deh",
+    "note": "Question word — note the accent on the ó",
+    "categories": ["questions"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "aquí",
+    "english": "here",
+    "pronunciation": "ah-KEE",
+    "note": "Location word — pairs with estar",
+    "categories": ["adverbs"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "allí",
+    "english": "there",
+    "pronunciation": "ah-YEE",
+    "note": "Location word — pairs with estar",
+    "categories": ["adverbs"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "el baño",
+    "english": "the bathroom",
+    "pronunciation": "ehl BAH-nyoh",
+    "note": "¿Dónde está el baño? — essential travel phrase",
+    "categories": ["hotel", "emergencies"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "el hotel",
+    "english": "the hotel",
+    "pronunciation": "ehl oh-TEHL",
+    "note": "Masculine noun — el, not la",
+    "categories": ["hotel"]
+  }
+]
