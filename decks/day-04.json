@@ -1,0 +1,90 @@
+[
+  {
+    "type": "vocab",
+    "spanish": "bueno",
+    "english": "good (masculine)",
+    "pronunciation": "BWEH-noh",
+    "note": "Feminine form: buena. Plural: buenos/buenas. Goes after the noun.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "malo",
+    "english": "bad (masculine)",
+    "pronunciation": "MAH-loh",
+    "note": "Feminine: mala. Plural: malos/malas.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "grande",
+    "english": "big, large",
+    "pronunciation": "GRAHN-deh",
+    "note": "Same form for masculine and feminine (ends in -e). Plural: grandes.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "pequeño",
+    "english": "small (masculine)",
+    "pronunciation": "peh-KEH-nyoh",
+    "note": "Feminine: pequeña. The ñ sound is like the 'ny' in 'canyon'.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "bonito",
+    "english": "pretty, nice-looking (masculine)",
+    "pronunciation": "boh-NEE-toh",
+    "note": "Feminine: bonita. Often used for places, things, and people.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "feo",
+    "english": "ugly (masculine)",
+    "pronunciation": "FEH-oh",
+    "note": "Feminine: fea. Less harsh than English 'ugly' — also means 'unpleasant'.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "caro",
+    "english": "expensive (masculine)",
+    "pronunciation": "KAH-roh",
+    "note": "Feminine: cara. Useful when shopping or dining out.",
+    "categories": ["adjectives", "shopping"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "barato",
+    "english": "cheap, inexpensive (masculine)",
+    "pronunciation": "bah-RAH-toh",
+    "note": "Feminine: barata. Not negative like English 'cheap' can be — just means low-priced.",
+    "categories": ["adjectives", "shopping"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "delicioso",
+    "english": "delicious (masculine)",
+    "pronunciation": "deh-lee-see-OH-soh",
+    "note": "Feminine: deliciosa. Pair with food: 'La comida es deliciosa.'",
+    "categories": ["adjectives", "food"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "interesante",
+    "english": "interesting",
+    "pronunciation": "een-teh-reh-SAHN-teh",
+    "note": "Same form for masculine and feminine. Plural: interesantes.",
+    "categories": ["adjectives"]
+  },
+  {
+    "type": "vocab",
+    "spanish": "muy",
+    "english": "very",
+    "pronunciation": "MWEE",
+    "note": "Goes before the adjective: 'muy bueno' = very good. Doesn't change form.",
+    "categories": ["adverbs"]
+  }
+]
